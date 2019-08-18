@@ -10,10 +10,12 @@
 		<properties>
 			<property name="eclipselink.logging.level" value="CONFIG" />
             <property name="eclipselink.target-database" value="MYSQL" />
+			<property name="eclipselink.ddl-generation" value="drop-and-create-tables" />
+			<property name="eclipselink.ddl-generation.output-mode" value="database" />
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://jj/sqrllaptop?serverTimezone=America/New_York&amp;character_set_server=utf8mb4" />
-            <property name="javax.persistence.jdbc.user" value="sqrl" />
-            <property name="javax.persistence.jdbc.password" value="WEdtYtf8KNGmc77T" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://127.0.0.1:3306/alunsdatabase"/>
+            <property name="javax.persistence.jdbc.user" value="root" />
+            <property name="javax.persistence.jdbc.password" value="my-secret-pw" />
 		</properties>
 	</persistence-unit>
 	<!-- The java SQRL persistence unit -->
@@ -26,10 +28,13 @@
 		<properties>
 			<property name="eclipselink.logging.level" value="CONFIG" />
             <property name="eclipselink.target-database" value="MYSQL" />
+			<property name="eclipselink.ddl-generation" value="drop-and-create-tables" />
+			<property name="eclipselink.ddl-generation.output-mode" value="database" />
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://jj/sqrllaptop?serverTimezone=America/New_York&amp;character_set_server=utf8mb4" />
-            <property name="javax.persistence.jdbc.user" value="sqrl" />
-            <property name="javax.persistence.jdbc.password" value="WEdtYtf8KNGmc77T" />
+
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://127.0.0.1:3306/alunsdatabase"/>
+            <property name="javax.persistence.jdbc.user" value="root" />
+            <property name="javax.persistence.jdbc.password" value="my-secret-pw" />
 		</properties>
 	</persistence-unit>
 </persistence>

@@ -34,8 +34,10 @@
             </Item>
           </Array>
         </Arg>
-        <Set name="host"><Property name="jetty.http.host" deprecated="jetty.host" /></Set>
-        <Set name="port"><Property name="jetty.http.port" deprecated="jetty.port" default="80" /></Set>
+        <Set name="host">127.0.0.1</Set>
+<!--        <Set name="host">172.20.10.2</Set>-->
+        <!--<Set name="host"><Property name="jetty.http.host" deprecated="jetty.host" /></Set> -->
+        <Set name="port"><Property name="jetty.http.port" deprecated="jetty.port" default="8888" /></Set>
         <Set name="idleTimeout"><Property name="jetty.http.idleTimeout" deprecated="http.timeout" default="30000"/></Set>
         <Set name="acceptorPriorityDelta"><Property name="jetty.http.acceptorPriorityDelta" deprecated="http.acceptorPriorityDelta" default="0"/></Set>
         <Set name="acceptQueueSize"><Property name="jetty.http.acceptQueueSize" deprecated="http.acceptQueueSize" default="0"/></Set>

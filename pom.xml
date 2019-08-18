@@ -13,6 +13,7 @@
 	<name>SQRL Server Example Webapp</name>
 	<description>Example app that shows how to add SQRL authentication to an existing app.</description>
 	<url>https://github.com/sqrlserverjava/sqrl-server-example</url>
+
 	<properties>
 		<!-- Default, can be overridden by passing -Dtomcat.manager.url=...  -->
 	    <tomcat.manager.url>http://127.0.0.1:8010/manager/text</tomcat.manager.url>
@@ -43,7 +44,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>6.0.6</version>
+			<version>8.0.19</version>
 		</dependency>
 		<dependency>
 		    <groupId>ch.qos.logback</groupId>
@@ -111,6 +112,7 @@
 				<configuration>
 					<scanIntervalSeconds>3</scanIntervalSeconds>
 					<jettyXml>jetty/jetty.xml,jetty/jetty-ssl.xml,jetty/jetty-ssl-context.xml,jetty/jetty-https.xml</jettyXml>
+<!--					<jettyXml>jetty/jetty.xml,jetty/jetty-http.xml,jetty/jetty-ssl.xml,jetty/jetty-ssl-context.xml,jetty/jetty-https.xml</jettyXml>-->
 					<webApp>
 						<contextPath>/sqrlexample</contextPath>
 					</webApp>
@@ -153,17 +155,6 @@
 				</executions>
 				<configuration>
 					<outputPackage>com.github.sqrlserverjava.example</outputPackage>
-				</configuration>
-			</plugin>
-			<plugin>
-				<!-- Allow us to deploy to tomcat for testing -->
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
-				<version>2.2</version>
-				<configuration>
-          			<url>${tomcat.manager.url}</url>
-          			<server>tomcat8laptop</server>
-          			<update>true</update>
 				</configuration>
 			</plugin>
 		</plugins>
