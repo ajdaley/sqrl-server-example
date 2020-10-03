@@ -4,7 +4,7 @@ public class Constants {
 	private Constants() {
 	}
 
-	private static final String					PACKAGE_NAME		= Constants.class.getPackage().getName();
+	private static final String	PACKAGE_NAME = Constants.class.getPackage().getName();
 
 	public static final String	SESSION_NATIVE_APP_USER	= PACKAGE_NAME + ".nativeAppUser";
 	public static final String	SESSION_SQRL_IDENTITY	= PACKAGE_NAME + ".sqrlIdentity";
@@ -16,6 +16,6 @@ public class Constants {
 	public static final String	JSP_SUBTITLE					= "subtitle";
 	public static final String	JSP_PAGE_REFRESH_SECONDS		= "pageRefreshSeconds";
 	public static final String	PASSWORD_FOR_ALL_USERS			= "sqrl";
-	public static final String	APP_PERSISTENCE_UNIT_NAME		= "exampleapp-persistence";
+	public static final String	APP_PERSISTENCE_UNIT_NAME		= "javasqrl-persistence";
 
 }

@@ -3,21 +3,51 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.github.sqrlserverjava</groupId>
-		<artifactId>sqrl-server-parent</artifactId>
-		<version>1.2.3-SNAPSHOT</version>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.8.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+	<groupId>com.github.sqrlserverjava</groupId>
 	<artifactId>sqrlexample</artifactId>
-	<packaging>war</packaging>
-	<version>0.7.2-SNAPSHOT</version>
-	<name>SQRL Server Example Webapp</name>
+
+	<version>1.0.0-SNAPSHOT</version>
+	<name>SQRL SpringBoot/Data Server Example Webapp</name>
 	<description>Example app that shows how to add SQRL authentication to an existing app.</description>
-	<url>https://github.com/sqrlserverjava/sqrl-server-example</url>
+	<url>https://github.com/ajdaley/sqrl-server-example</url>
+
 	<properties>
-		<!-- Default, can be overridden by passing -Dtomcat.manager.url=...  -->
-	    <tomcat.manager.url>http://127.0.0.1:8010/manager/text</tomcat.manager.url>
+		<java.version>1.8</java.version>
 	</properties>
+
 	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- API, java.xml.bind module -->
+		<dependency>
+			<groupId>jakarta.xml.bind</groupId>
+			<artifactId>jakarta.xml.bind-api</artifactId>
+			<version>2.3.2</version>
+		</dependency>
 		<dependency>
 			<groupId>com.github.sqrlserverjava</groupId>
 			<artifactId>sqrl-server-base</artifactId>
@@ -28,161 +58,46 @@
 			<artifactId>sqrl-server-atmosphere</artifactId>
 			<version>1.1.0-SNAPSHOT</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
 		<dependency>
-			<!-- Reference JPA provider, substitute with another JPA provider as desired-->
-			<groupId>org.eclipse.persistence</groupId>
-			<artifactId>eclipselink</artifactId>
-			<version>2.6.3</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<scope>compile</scope>
 		</dependency>
-		<!-- Depending on where we deploy, we use derby or mysql db.  A real app would just include one -->
+		<!-- JSTL for JSP -->
 		<dependency>
-			<groupId>org.apache.derby</groupId>
-			<artifactId>derby</artifactId>
-			<version>10.12.1.1</version>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
 		</dependency>
+		<!-- Need this to compile JSP -->
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>6.0.6</version>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+			<scope>provided</scope>
 		</dependency>
+		<!-- Need this to compile JSP,
+			tomcat-embed-jasper version is not working, no idea why -->
 		<dependency>
-		    <groupId>ch.qos.logback</groupId>
-		    <artifactId>logback-classic</artifactId>
-		    <version>1.2.3</version>
+			<groupId>org.eclipse.jdt.core.compiler</groupId>
+			<artifactId>ecj</artifactId>
+			<version>4.6.1</version>
+			<scope>provided</scope>
 		</dependency>
-
-		<!-- JRE 9 and higher does not include JAXB: https://stackoverflow.com/a/43574427/2863942 -->
+		<!-- Optional, test for static content, bootstrap CSS-->
 		<dependency>
-		    <groupId>javax.xml.bind</groupId>
-		    <artifactId>jaxb-api</artifactId>
-		    <version>2.2.11</version>
-		</dependency>
-		<dependency>
-		    <groupId>com.sun.xml.bind</groupId>
-		    <artifactId>jaxb-core</artifactId>
-		    <version>2.2.11</version>
-		</dependency>
-		<dependency>
-		    <groupId>com.sun.xml.bind</groupId>
-		    <artifactId>jaxb-impl</artifactId>
-		    <version>2.2.11</version>
-		</dependency>
-		<dependency>
-		    <groupId>javax.activation</groupId>
-		    <artifactId>activation</artifactId>
-		    <version>1.1.1</version>
-		</dependency>
-
-		<!-- TEST -->
-		<dependency>
-			<groupId>org.dbunit</groupId>
-			<artifactId>dbunit</artifactId>
-			<version>2.5.2</version>
-			<scope>test</scope>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>3.3.7</version>
 		</dependency>
 	</dependencies>
-	<build>
-		<finalName>sqrlexample</finalName>
-		<plugins>
-			<!-- The following plugins are specific to running the example app in jetty, or to the
-			way in which the example app is deployed to sqrljava.com.  These are NOT needed
-			in the pom of your webapp -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>2.6</version>
-				<configuration>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
-					<archive>
-						<manifest>
-							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-						</manifest>
-						<manifestEntries>
-							<Implementation-Build>${buildNumber}</Implementation-Build>
-						</manifestEntries>
-					</archive>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-maven-plugin</artifactId>
-				<version>9.4.20.v20190813</version>
 
-				<configuration>
-					<scanIntervalSeconds>3</scanIntervalSeconds>
-					<jettyXml>jetty/jetty.xml,jetty/jetty-ssl.xml,jetty/jetty-ssl-context.xml,jetty/jetty-https.xml</jettyXml>
-					<webApp>
-						<contextPath>/sqrlexample</contextPath>
-					</webApp>
-				</configuration>
-			</plugin>
+	<build>
+		<plugins>
 			<plugin>
-				<!-- Provides a simple build number that can be displayed in the app -->
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>buildnumber-maven-plugin</artifactId>
-				<version>1.4</version>
-				<executions>
-					<execution>
-						<phase>validate</phase>
-						<goals>
-							<goal>create</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<doCheck>false</doCheck>
-					<doUpdate>true</doUpdate>
-					<format>{0,date,MMddHH}</format>
-					<items>
-						<item>timestamp</item>
-					</items>
-				</configuration>
-			</plugin>
-			<plugin>
-				<!-- Include very detailed build info for logging -->
-				<groupId>net.mgorski.quicktag</groupId>
-				<artifactId>quicktag</artifactId>
-				<version>2.1.5</version>
-				<executions>
-					<execution>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>quicktag</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<outputPackage>com.github.sqrlserverjava.example</outputPackage>
-				</configuration>
-			</plugin>
-			<plugin>
-				<!-- Allow us to deploy to tomcat for testing -->
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
-				<version>2.2</version>
-				<configuration>
-          			<url>${tomcat.manager.url}</url>
-          			<server>tomcat8laptop</server>
-          			<update>true</update>
-				</configuration>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
-	<repositories>
-		<repository>
-			<id>oss.sonatype.org-snapshot</id>
-			<url>http://oss.sonatype.org/content/repositories/snapshots</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
-	<scm>
-		<connection>scm:git:git@github.com:sqrlserverjava/sqrl-server-example.git</connection>
-		<developerConnection>scm:git:git@github.com:sqrlserverjava/sqrl-server-example.git</developerConnection>
-		<url>git@github.com:sqrlserverjava/sqrl-server-example.git</url>
-	</scm>
 </project>

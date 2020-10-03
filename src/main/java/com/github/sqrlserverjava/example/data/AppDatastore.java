@@ -14,11 +14,12 @@ import com.github.sqrlserverjava.exception.SqrlPersistenceException;
  * The datastore for the example app. This is unchanged vs pre-SQRL
  *
  * @author Dave Badia
+ * @author Alun Daley
  *
  */
 public class AppDatastore {
 	private static final AppDatastore	INSTANCE				= new AppDatastore();
-	private static EntityManagerFactory	entityManagerFactory	= Persistence
+	private static EntityManagerFactory entityManagerFactory	= Persistence
 			.createEntityManagerFactory(Constants.APP_PERSISTENCE_UNIT_NAME);
 
 	public static AppDatastore getInstance() {
@@ -30,8 +31,8 @@ public class AppDatastore {
 		try {
 			@SuppressWarnings("unchecked")
 			final List<AppUser> resultList = entityManager
-			.createQuery("SELECT u FROM AppUser u WHERE u.username = :aUsername")
-			.setParameter("aUsername", username).getResultList();
+					.createQuery("SELECT u FROM AppUser u WHERE u.username = :aUsername")
+					.setParameter("aUsername", username).getResultList();
 			if (resultList == null || resultList.isEmpty()) {
 				return null;
 			} else if (resultList.size() > 1) {
@@ -83,6 +84,7 @@ public class AppDatastore {
 	}
 
 	public static void main(final String[] args) {
-		Persistence.generateSchema("exampleapp-persistence", Collections.emptyMap());
+		Persistence.generateSchema("javasqrl-persistence", Collections.emptyMap());
 	}
 }
+

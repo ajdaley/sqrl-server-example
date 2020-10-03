@@ -31,7 +31,7 @@
 				  <input type="submit" value="Link Account">
 				 </form>
 				 <br/>
-				 <button onclick="location.href = 'usersettings.jsp';">I don't have a username/password</button>
+				 <button onclick="location.href = 'usersettings';">I don't have a username/password</button>
 				  <br/>
 				  <br/>
 				 <p><a href="logout">Cancel</a><p/>

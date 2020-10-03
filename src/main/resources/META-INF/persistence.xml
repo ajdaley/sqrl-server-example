@@ -1,35 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="1.0"
-	xmlns="http://java.sun.com/xml/ns/persistence">
-	<!-- Our example app persistence unit -->
-	<!-- The main web app DOES NOT have to use JPA, we do so here for convenience -->
-	<persistence-unit name="exampleapp-persistence"
-		transaction-type="RESOURCE_LOCAL">
-		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-		<class>com.github.sqrlserverjava.example.data.AppUser</class>
-		<properties>
-			<property name="eclipselink.logging.level" value="CONFIG" />
-            <property name="eclipselink.target-database" value="MYSQL" />
-            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://jj/sqrllaptop?serverTimezone=America/New_York&amp;character_set_server=utf8mb4" />
-            <property name="javax.persistence.jdbc.user" value="sqrl" />
-            <property name="javax.persistence.jdbc.password" value="WEdtYtf8KNGmc77T" />
-		</properties>
-	</persistence-unit>
+			 xmlns="http://java.sun.com/xml/ns/persistence">
 	<!-- The java SQRL persistence unit -->
 	<persistence-unit name="javasqrl-persistence"
-		transaction-type="RESOURCE_LOCAL">
-		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+					  transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<class>com.github.sqrlserverjava.persistence.SqrlIdentity</class>
 		<class>com.github.sqrlserverjava.persistence.SqrlCorrelator</class>
 		<class>com.github.sqrlserverjava.persistence.SqrlUsedNutToken</class>
 		<properties>
-			<property name="eclipselink.logging.level" value="CONFIG" />
-            <property name="eclipselink.target-database" value="MYSQL" />
-            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://jj/sqrllaptop?serverTimezone=America/New_York&amp;character_set_server=utf8mb4" />
-            <property name="javax.persistence.jdbc.user" value="sqrl" />
-            <property name="javax.persistence.jdbc.password" value="WEdtYtf8KNGmc77T" />
+			<property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
+			<property name="eclipselink.target-database" value="H2" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:TEST;MVCC=true;DB_CLOSE_DELAY=-1;MODE=Oracle" />
+			<property name="javax.persistence.jdbc.user" value="sa" />
+			<property name="eclipselink.ddl-generation" value="drop-and-create-tables" />
+			<property name="eclipselink.ddl-generation.output-mode" value="database" />
 		</properties>
 	</persistence-unit>
 </persistence>
