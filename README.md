@@ -4,6 +4,7 @@
 
 This JEE app is the demo for the [sqrl-server-base](https://github.com/sqrlserverjava/sqrl-server-base)  and [sqrl-server-atmosphere](https://github.com/sqrlserverjava/sqrl-server-atmosphere) libraries.
 
+The app uses spring data so no external DB or config is necessary.
 You can run the demo app locally by:
 1. Checkout the sqrlexample project:  `git clone https://github.com/ajdaley/sqrl-server-example.git`
 1. Move into the directory: `cd sqrl-server-example`
